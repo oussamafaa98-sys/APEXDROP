@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>APEX</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Chakra+Petch:wght@400;600&display=swap">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#05080a; --ink:#eafff0; --mute:#7f9a8a; --line:#16241c;
+  --green:#39ff6a; --red:#ff3b30; --cyan:#27e1ff; --amber:#ffb000;
+  --accent:var(--green);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);overflow-x:clip;-webkit-text-size-adjust:100%}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Chakra Petch",system-ui,sans-serif;overflow-x:clip;-webkit-tap-highlight-color:transparent;
+  background-image:radial-gradient(circle at 80% 0%,color-mix(in srgb,var(--accent) 14%,transparent),transparent 45%),
+  linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:auto,48px 48px,48px 48px;transition:background .5s}
+h1,h2,.big{font-family:Anton,Impact,"Arial Narrow",sans-serif;font-weight:400;margin:0;line-height:.88;letter-spacing:.01em}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+
+/* hero */
+.hero{position:relative;min-height:92vh;min-height:92svh;display:flex;flex-direction:column;justify-content:center;padding:56px 0 40px;overflow:hidden}
+.storm{position:absolute;right:-12vw;top:50%;width:min(80vw,720px);aspect-ratio:1;translate:0 -50%;border-radius:50%;
+  border:2px dashed var(--accent);opacity:.5;animation:shrink 9s ease-in-out infinite alternate}
+.storm::after{content:"";position:absolute;inset:18%;border-radius:50%;border:1px solid var(--accent);opacity:.6}
+@keyframes shrink{to{scale:.72}}
+.tag{font-size:.95rem;color:var(--accent);margin:0 0 18px;max-width:34ch}
+.hero h1{font-size:clamp(5.5rem,24vw,17rem);text-transform:uppercase;position:relative;z-index:2}
+.hero h1 span{display:block}
+.hero h1 span:last-child{color:transparent;-webkit-text-stroke:2px var(--accent)}
+.plane{position:absolute;top:14%;left:0;width:150px;color:var(--accent);z-index:3;animation:fly 5s cubic-bezier(.3,.6,.3,1) 1 forwards}
+.plane::before{content:"";position:absolute;right:90%;top:50%;width:60vw;height:2px;background:linear-gradient(90deg,transparent,var(--accent))}
+@keyframes fly{from{translate:-200px 0}to{translate:calc(100vw - 230px) 60px}}
+.pick{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px;position:relative;z-index:4}
+.pick button{font:600 1rem "Chakra Petch",sans-serif;color:var(--ink);background:transparent;border:2px solid var(--c);padding:12px 22px;cursor:pointer;transform:skewX(-10deg);transition:.2s}
+.pick button:hover,.pick button[aria-pressed=true]{background:var(--c);color:#04100a}
+.pick button:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.pick button span{display:inline-block;transform:skewX(10deg)}
+
+/* poster panels */
+.panels{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-block:2px solid var(--line)}
+.panel{position:relative;padding:44px 26px 40px;border-right:2px solid var(--line);overflow:hidden;min-height:520px;display:flex;flex-direction:column}
+.panel:last-child{border-right:0}
+.panel::before{content:"";position:absolute;inset:0;background:linear-gradient(170deg,color-mix(in srgb,var(--c) 22%,transparent),transparent 55%);pointer-events:none}
+.panel h2{font-size:clamp(3.4rem,7vw,5.6rem);color:var(--c);text-transform:uppercase;position:relative}
+.panel p{color:#b9d3c2;line-height:1.55;max-width:32ch;position:relative}
+.art{height:150px;margin:26px 0 8px;color:var(--c);position:relative}
+.art svg{width:100%;height:100%}
+.stats{margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:12px;position:relative}
+.stats div{border-top:2px solid var(--c);padding-top:8px}
+.stats b{display:block;font:400 2.3rem/1 Anton,Impact,sans-serif;color:var(--ink)}
+.stats small{color:var(--mute)}
+.drop{--c:var(--green)} .grid{--c:var(--red)} .sky{--c:var(--cyan)}
+
+/* fighter */
+.fighter{--c:var(--cyan);display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;padding:70px 20px 20px;max-width:1180px;margin:0 auto}
+.fighter .jet{color:var(--c);position:relative;aspect-ratio:1.2;display:grid;place-items:center}
+.fighter .jet::before{content:"";position:absolute;inset:6%;border:2px dashed var(--c);border-radius:50%;opacity:.35}
+.fighter .jet svg{width:86%;filter:drop-shadow(0 0 18px color-mix(in srgb,var(--c) 55%,transparent));animation:hover 5s ease-in-out infinite alternate}
+@keyframes hover{to{translate:0 -10px;rotate:2deg}}
+.fighter h2{font-size:clamp(3.6rem,10vw,7.5rem);color:var(--c);text-transform:uppercase}
+.fighter h3{font:400 1.5rem Anton,Impact,sans-serif;margin:14px 0 18px;letter-spacing:.04em}
+.fighter p{color:#b9d3c2;line-height:1.6;max-width:42ch}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}
+.chips span{border:2px solid var(--c);padding:6px 12px;transform:skewX(-10deg);font-weight:600}
+.fighter .stats{max-width:420px;grid-template-columns:repeat(3,1fr)}
+.fighter .stats div{border-top:2px solid var(--c);padding-top:8px}
+.fighter .stats b{font-size:2rem}
+
+/* ticker */
+.tk-wrap{overflow:hidden;padding:34px 0;margin-top:30px}
+.ticker{overflow:hidden;white-space:nowrap;background:var(--accent);color:#04100a;transform:rotate(-1.2deg);margin:0 -3%;transition:background .5s}
+.ticker div{display:inline-block;padding:12px 0;font:400 1.6rem Anton,Impact,sans-serif;animation:run 26s linear infinite}
+@keyframes run{to{translate:-50% 0}}
+
+.manifesto{padding:90px 0 70px;display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:end}
+.manifesto h2{font-size:clamp(2.8rem,8vw,6rem);text-transform:uppercase}
+.manifesto p{color:#b9d3c2;line-height:1.6;max-width:44ch;margin:0}
+footer{border-top:2px solid var(--line);padding:26px 0 40px;color:var(--mute);font-size:.9rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+@media (max-width:820px){
+  .panels{grid-template-columns:1fr}
+  .panel{border-right:0;border-bottom:2px solid var(--line);min-height:0}
+  .panel:last-child{border-bottom:0}
+  .manifesto{grid-template-columns:1fr}
+  .fighter{grid-template-columns:1fr;padding-top:50px}
+  .plane{width:90px;top:5%}
+  .plane::before{width:40vw}
+  .hero{padding:70px 0 40px}
+  .hero h1{font-size:clamp(5rem,26vw,9rem)}
+  .storm{right:auto;left:50%;translate:-50% -50%;width:92vw;opacity:.35}
+  .pick button{flex:1 1 42%;padding:14px 10px;margin-right:8px}
+  .panel{padding:36px 20px 32px}
+  .art{height:120px}
+  .manifesto{padding:60px 0 50px}
+  .ticker div{font-size:1.3rem}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.plane{display:none}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="storm" aria-hidden="true"></div>
+  <svg class="plane" viewBox="0 0 120 40" fill="currentColor" aria-hidden="true"><path d="M2 20l22-6 30-2-10-10h8l22 10h28c8 0 12 3 12 6s-4 6-12 6H72L50 38h-8l10-14-28-2z"/></svg>
+  <div class="wrap">
+    <p class="tag" id="tag">Land hot. Brake late. Climb high.</p>
+    <h1><span>Apex</span><span>Drop</span></h1>
+    <div class="pick" role="group" aria-label="Pick your colour">
+      <button style="--c:var(--green)" data-t="green" aria-pressed="true"><span>Fortnite</span></button>
+      <button style="--c:var(--red)" data-t="red" aria-pressed="false"><span>Formula 1</span></button>
+      <button style="--c:var(--cyan)" data-t="cyan" aria-pressed="false"><span>Aviation</span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="panels">
+    <article class="panel drop">
+      <h2>Drop<br>Zone</h2>
+      <p>Jump from the bus, pick your spot, and outlast ninety-nine others while the storm closes in.</p>
+      <div class="art" aria-hidden="true">
+        <svg viewBox="0 0 200 150" fill="none" stroke="currentColor" stroke-width="3">
+          <circle cx="100" cy="80" r="62" stroke-dasharray="6 6"/><circle cx="100" cy="80" r="34"/>
+          <path d="M100 80V30M100 30c-22 0-36 12-40 24h80c-4-12-18-24-40-24zM60 54l40 26M140 54l-40 26"/>
+          <rect x="92" y="80" width="16" height="16" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="stats"><div><b>100</b><small>players per match</small></div><div><b>1</b><small>victory royale</small></div></div>
+    </article>
+
+    <article class="panel grid">
+      <h2>The<br>Grid</h2>
+      <p>Twenty cars, one racing line. Every corner is a decision made at over 300 km/h.</p>
+      <div class="art" aria-hidden="true">
+        <svg viewBox="0 0 200 150" fill="currentColor">
+          <path d="M10 92h28l10-12h46l8 8h40l12-6h30v10H10zM28 74h20v12H28z"/>
+          <circle cx="52" cy="104" r="16"/><circle cx="154" cy="104" r="16"/>
+          <circle cx="52" cy="104" r="6" fill="#05080a"/><circle cx="154" cy="104" r="6" fill="#05080a"/>
+          <path d="M0 126h200v4H0zM20 136h60v3H20z" opacity=".6"/>
+        </svg>
+      </div>
+      <div class="stats"><div><b>300+</b><small>km/h top speed</small></div><div><b>&lt;3s</b><small>a pit stop</small></div></div>
+    </article>
+
+    <article class="panel sky">
+      <h2>Sky<br>Lane</h2>
+      <p>Wings turn air into lift. Climb through the clouds and cross oceans on a ribbon of thin air.</p>
+      <div class="art" aria-hidden="true">
+        <svg viewBox="0 0 200 150" fill="currentColor">
+          <path d="M20 84l60-10 30-48h14l-12 48 44-4 16-14h10l-6 18 6 18h-10l-16-14-44-4 12 48h-14L80 94 20 84z" transform="rotate(-14 100 75)"/>
+          <path d="M0 130h200M0 140h120" stroke="currentColor" stroke-width="2" opacity=".4"/>
+        </svg>
+      </div>
+      <div class="stats"><div><b>11 km</b><small>typical cruise altitude</small></div><div><b>900</b><small>km/h airliner speed</small></div></div>
+    </article>
+  </section>
+
+  <section class="fighter">
+    <div class="jet" aria-hidden="true">
+      <svg viewBox="0 0 240 200" fill="currentColor"><path d="M120 6L134 58 232 138 228 156 168 150 176 184 150 178 136 196 120 190 104 196 90 178 64 184 72 150 12 156 8 138 106 58Z"/><path d="M120 24l8 40h-16z" fill="#05080a"/><path d="M104 170l-6 18h10zM136 170l6 18h-10z" fill="#05080a" opacity=".7"/></svg>
+    </div>
+    <div>
+      <h2>F-22<br>Raptor</h2>
+      <h3>Fighter jet. Stealth. Pure speed.</h3>
+      <p>The F-22 is a stealth fighter built to win the air. It is fast, hard to see on radar, and can turn on a dime thanks to engines that steer.</p>
+      <div class="chips"><span>Stealth</span><span>Supercruise</span><span>Thrust vectoring</span></div>
+      <div class="stats"><div><b>Mach 2+</b><small>top speed</small></div><div><b>2</b><small>engines</small></div><div><b>19 km</b><small>ceiling</small></div></div>
+    </div>
+  </section>
+
+  <div class="tk-wrap" aria-hidden="true"><div class="ticker"><div id="tk"></div></div></div>
+
+  <section class="wrap manifesto">
+    <h2>Three worlds.<br>One need for speed.</h2>
+    <p>A hot drop, a late brake, a steep climb. Different arenas, same rush: go fast, stay sharp, and finish first. Pick a colour above and the whole poster follows you.</p>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>APEX DROP</span><span>A fan poster. Not affiliated with Epic Games, Formula 1 or any airline.</span></div></footer>
+
+<script>
+var tags={green:"Land hot. Brake late. Climb high.",red:"Lights out. Full send. Chequered flag.",cyan:"Wheels up. Clouds below. Horizon ahead."};
+var words=["VICTORY ROYALE","LIGHTS OUT","WHEELS UP","POLE POSITION","STORM CIRCLE","MACH SPEED","FASTEST LAP","FINAL ZONE","F-22 RAPTOR","AFTERBURNER"];
+var tk=document.getElementById("tk"),s="";
+for(var i=0;i<2;i++){words.forEach(function(w){s+=w+" \u2022 "})}
+tk.textContent=s+s;
+document.querySelectorAll(".pick button").forEach(function(b){
+  b.addEventListener("click",function(){
+    document.querySelectorAll(".pick button").forEach(function(x){x.setAttribute("aria-pressed","false")});
+    b.setAttribute("aria-pressed","true");
+    document.documentElement.style.setProperty("--accent","var(--"+b.dataset.t+")");
+    document.getElementById("tag").textContent=tags[b.dataset.t];
+  });
+});
+</script>
+</body>
+</html>
